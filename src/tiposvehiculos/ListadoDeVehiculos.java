@@ -117,10 +117,10 @@ public class ListadoDeVehiculos extends JFrame implements ActionListener, MouseL
 		 */
 
 		String query = "SELECT "
-				+ "Fecha_Creacion"
-				+ "tipoVehiculo"
-				+ "cantidadDias"
-				+ "precioCotizacion"
+				+ " Fecha_Creacion, "
+				+ " idTipoVehiculo, "
+				+ " cantidadDias, "
+				+ "precioCotizacion "
 				+ "FROM cotizacion";
 		// Cargar datos en la tabla
 		try {
@@ -135,10 +135,10 @@ public class ListadoDeVehiculos extends JFrame implements ActionListener, MouseL
 			// Procesa el resultSet y agrega los registros al ArrayList detalleListaPrecio
 			// que contendra la informacion obtenida desde la BD
 			while (rs.next()) {
-				detalle[0] = String.valueOf(rs.getInt("FECHACREACION"));
-				detalle[1] = rs.getString("TIPOVEHICULO");
-				detalle[2] = rs.getString("DIASDEALQUILER");
-				detalle[3] = rs.getString("PRECIOCOTIZACION");
+				detalle[0] = String.valueOf(rs.getInt("Fecha_Creacion"));
+				detalle[1] = rs.getString("idTipoVehiculo");
+				detalle[2] = rs.getString("cantidadDias");
+				detalle[3] = rs.getString("precioCotizacion");
 
 				this.modelo.addRow(detalle);
 
