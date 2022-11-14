@@ -128,8 +128,13 @@ public class App {
 
     public static void ListarVehiculo() {
 
+
+        /*FALTARIA AGRREGAR BIEN EN LA INTERFAZ EL ORDEN, EL FORMATEO A LA DERECHA.
+        LA EXPERIENCIA DE DEVOLVER EL RESULTADO DE LA COTIZACION POR CONSOLA
+        QUE EL USUARIO NO PUEDA LISTAR POR CONSOLA, SINO QUE SE DESPLIEGUE POR INTERFAZ
+
         // Objeto para ejecutar el alta/actualizacion en la base de datos
-        AccesoDatos accesoBD = null;
+        /*AccesoDatos accesoBD = null;
         Connection con = null;
         Statement sentencia = null;
         ResultSet rs = null;
@@ -173,7 +178,7 @@ public class App {
             }
         }
     }
-
+*/
     public static void main(String[] args) throws Exception {
 
         int respuestaMenu;
