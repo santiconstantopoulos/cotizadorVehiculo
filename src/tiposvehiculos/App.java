@@ -1,7 +1,5 @@
 package tiposvehiculos;
 
-import java.util.HashMap;
-import java.util.Map;
 import java.util.Scanner;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -10,7 +8,30 @@ import java.sql.Timestamp;
 
 public class App {
 
+    public static void modelarVehiculo( Vehiculo miVehiculo ){
+        miVehiculo.setResultadoCotizacion();
+        switch(miVehiculo.getNombreVehiculo()){
 
+            case "Auto": 
+                almacenarPieza(miVehiculo, 1);
+                break;
+            case "Minibus":
+                almacenarPieza(miVehiculo, 2);
+                break;
+
+            case "Camion":
+                almacenarPieza(miVehiculo, 3);
+                break;
+
+            case "Furgoneta":
+                almacenarPieza(miVehiculo, 4);
+                break;
+
+            default:
+                break;
+
+        }
+    }
 
     static Scanner scanner = new Scanner(System.in);
 
@@ -19,60 +40,33 @@ public class App {
         Integer cantDias = scanner.nextInt();
         switch (respuesta) {
             case 1:
-                System.out.println("Has elegido Auto. ");
                 Auto auto = new Auto("Auto", 2000, cantDias);
-                // System.out.println("El precio por la cantidad de dias " + cantDias + " y
-                // considerandose de "
-                // + auto.getCantPlazas() + " plazas el auto, el total es :"
-                // + auto.calculoAlquiler(cantDias));
-                almacenarPieza(auto, cantDias, auto.calculoAlquiler(cantDias));
+                modelarVehiculo(auto);
+                //modelar llama al de almacenar
                 break;
             case 2:
                 System.out.println("Has elegido Minibus.");
-                Minibus minibus = new Minibus();
-                // System.out.println("El precio por la cantidad de dias " + cantDias
-                // + " y considerandose de " + minibus.getCantPlazas() + " plazas el minibus, el
-                // total es :"
-                // + minibus.calculoAlquiler(cantDias));
-                almacenarPieza(minibus, cantDias, minibus.calculoAlquiler(cantDias));
+                Minibus minibus = new Minibus("Minibus", 2000, cantDias);
+                modelarVehiculo(minibus);
 
                 break;
             case 3:
 
                 System.out.println("Has elegido Camion.");
-                Camion camion = new Camion();
-                // System.out.println("El precio por la cantidad de dias " + cantDias + " y
-                // considerandose de "
-                // + camion.getCantPlazas() + " plazas el camion, el total es de : $"
-                // + camion.calculoAlquiler(cantDias));
-                almacenarPieza(camion, cantDias, camion.calculoAlquiler(cantDias));
+                Camion camion = new Camion("Camion", 2000, cantDias);
+                modelarVehiculo(camion);
 
                 break;
             case 4:
                 System.out.println("Has elegido Furgoneta.");
-                Furgoneta furgoneta = new Furgoneta();
-                // System.out.println("El precio por la cantidad de dias " + cantDias
-                // + " y considerandose de " + furgoneta.getCantPlazas() + " plazas la
-                // furgoneta, el total es :"
-                // + furgoneta.calculoAlquiler(cantDias));
-                almacenarPieza(furgoneta, cantDias, furgoneta.calculoAlquiler(cantDias));
+                Furgoneta furgoneta = new Furgoneta("Furgoneta", 2000, cantDias);
+                modelarVehiculo(furgoneta);
 
                 break;
         }
     }
 
-    public static void almacenarPieza(Vehiculo mivehiculo, int cantDias, Double precioCotizacion) {
-        
-         
-
-        Map<String, Integer> map = new HashMap<String, Integer>();
-
-		map.put("Auto", 1);
-		map.put("Minibus", 2);
-		map.put("Camion", 3);
-		map.put("Furgoneta", 4);
-
-
+    public static void almacenarPieza(Vehiculo mivehiculo, int tipoVehiculo) {
         
         // Objeto para ejecutar el alta/actualizacion en la base de datos
         AccesoDatos accesoBD = null;
@@ -92,9 +86,9 @@ public class App {
 
             sentencia = con.prepareStatement(insertScript);
 
-            sentencia.setInt(1, map.get(mivehiculo.getNombreVehiculo()));
-            sentencia.setInt(2, cantDias);
-            sentencia.setDouble(3, precioCotizacion);
+            sentencia.setInt(1, tipoVehiculo);
+            sentencia.setInt(2, mivehiculo.getCantDias());
+            sentencia.setDouble(3, mivehiculo.getResultadoCotizacion());
             sentencia.setTimestamp(4, new Timestamp(System.currentTimeMillis()));
 
             // execute insert SQL statement

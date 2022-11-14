@@ -5,20 +5,18 @@ public abstract class Vehiculo {
     private int precioBase = 2000;
     private String nombreVehiculo;
     public Integer cantDias;
+    protected double resultado;
 
-
-
-    public Vehiculo(){
+    public Vehiculo() {
     }
 
-    public Vehiculo(String nombreVehiculo, int precioBase, Integer cantDias){
+    public Vehiculo(String nombreVehiculo, int precioBase, Integer cantDias) {
         this.nombreVehiculo = nombreVehiculo;
-        this.precioBase= precioBase;
+        this.precioBase = precioBase;
         this.cantDias = cantDias;
 
     }
 
-    
     public String getNombreVehiculo() {
         return nombreVehiculo;
     }
@@ -43,7 +41,6 @@ public abstract class Vehiculo {
         this.precioBase = precioBase;
     }
 
-
     public Integer getCantDias() {
         return cantDias;
     }
@@ -52,8 +49,12 @@ public abstract class Vehiculo {
         this.cantDias = cantDias;
     }
 
-    public abstract double calculoAlquiler(Integer cantDias);
+    public double getResultadoCotizacion() {
+        return this.resultado;
+    }
 
-
+    public void setResultadoCotizacion() {
+        this.resultado = this.cantDias;
+    }
 
 }
