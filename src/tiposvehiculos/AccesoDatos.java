@@ -43,7 +43,7 @@ public class AccesoDatos {
 		try {
 			conexion = DriverManager.getConnection(this.servidor,
 					this.usuario, this.clave);
-		} catch (SQLException error) { // dfdfdsf
+				} catch (SQLException error) { // dfdfdsf
 			System.err.println("ERROR AL CONECTAR CON EL SERVIDOR");
 			error.printStackTrace();
 			System.exit(0); // parar la ejecuci�n

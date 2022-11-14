@@ -39,6 +39,7 @@ public class App {
             default:
                 break;
         }
+        return;
     }
 
     public static void InstanciarVehiculo() {
@@ -49,13 +50,12 @@ public class App {
         System.out.println("2. Minibus");
         System.out.println("3. Camion");
         System.out.println("4. Furgoneta");
-        System.out.println("0. Salir");
 
         respuesta = scanner.nextInt();
 
         System.out.print("Ingresa la cantidad de dias: ");
         Integer cantDias = scanner.nextInt();
-        
+
         switch (respuesta) {
             case 1:
                 Auto auto = new Auto("Auto", 2000, cantDias);
@@ -75,7 +75,9 @@ public class App {
                 break;
             default:
                 break;
+
         }
+        return;
     }
 
     public static void AlmacenarVehiculo(Vehiculo mivehiculo, int tipoVehiculo) {
@@ -139,7 +141,7 @@ public class App {
             // Obtener la conexion para poder generar la sentencia de consulta
             con = accesoBD.getConexion();
 
-            String query = "SELECT * FROM cotizacion, vehiculo ";
+            String query = "SELECT * FROM cotizacion ";
 
             sentencia = con.createStatement();
             rs = sentencia.executeQuery(query);
@@ -149,7 +151,7 @@ public class App {
 
                 int idTipoVehiculo = rs.getInt("idTipoVehiculo");
                 System.out.println("Vehiculo Nro: " + String.valueOf(idTipoVehiculo)
-                        + " tipo " + rs.getString("tipoVehiculo")
+                        + " tipo " + rs.getString("idTipoVehiculo")
                         + " precio: " + rs.getDouble("precioCotizacion"));
 
             }
@@ -178,18 +180,22 @@ public class App {
 
         System.out.println("Bienvenido al cotizador de vehiculos.");
 
-        System.out.println("Ingrese la opción que corresponda: ");
-        System.out.println("1. Insertar Vehiculo a la BD");
-        System.out.println("2. Listar Vehiculos desde la BD");
-        System.out.println("0. Salir");
+        do {
+            System.out.println("\n");
+            System.out.println("Ingrese la opción que corresponda: ");
+            System.out.println("1. Insertar Vehiculo a la BD");
+            System.out.println("2. Listar Vehiculos desde la BD");
+            System.out.println("0. Salir");
 
-        respuestaMenu = scanner.nextInt();
+            respuestaMenu = scanner.nextInt();
 
-        if (respuestaMenu == 1)
-            InstanciarVehiculo();
-        else
-            ListarVehiculo();
-
+            if (respuestaMenu == 1) {
+                InstanciarVehiculo();
+            } else {
+                if(respuestaMenu==2)
+                    ListarVehiculo();
+            }
+        } while (respuestaMenu != 0);
         System.out.println("Gracias por utilizar el cotizador de vehiculos");
     }
 }
