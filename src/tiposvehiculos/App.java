@@ -21,6 +21,7 @@ public class App {
 
     public static void ModelarVehiculo(Vehiculo miVehiculo) {
         miVehiculo.setResultadoCotizacion();
+
         switch (miVehiculo.getNombreVehiculo()) {
 
             case "Auto":
@@ -40,9 +41,21 @@ public class App {
         }
     }
 
-    public static void InstanciarVehiculo(int respuesta) {
+    public static void InstanciarVehiculo() {
+
+        int respuesta;
+        System.out.println("Ingrese la opción que corresponda: ");
+        System.out.println("1. Auto");
+        System.out.println("2. Minibus");
+        System.out.println("3. Camion");
+        System.out.println("4. Furgoneta");
+        System.out.println("0. Salir");
+
+        respuesta = scanner.nextInt();
+
         System.out.print("Ingresa la cantidad de dias: ");
         Integer cantDias = scanner.nextInt();
+        
         switch (respuesta) {
             case 1:
                 Auto auto = new Auto("Auto", 2000, cantDias);
@@ -59,6 +72,8 @@ public class App {
             case 4:
                 Furgoneta furgoneta = new Furgoneta("Furgoneta", 2000, cantDias);
                 ModelarVehiculo(furgoneta);
+                break;
+            default:
                 break;
         }
     }
@@ -134,7 +149,7 @@ public class App {
 
                 int idTipoVehiculo = rs.getInt("idTipoVehiculo");
                 System.out.println("Vehiculo Nro: " + String.valueOf(idTipoVehiculo)
-                        + " tipo " + rs.getString("tipoVehiculo") 
+                        + " tipo " + rs.getString("tipoVehiculo")
                         + " precio: " + rs.getDouble("precioCotizacion"));
 
             }
@@ -159,23 +174,22 @@ public class App {
 
     public static void main(String[] args) throws Exception {
 
-        int respuesta;
-        ListarVehiculo();
-        /*System.out.println("Bienvenido al cotizador de vehiculos.");
+        int respuestaMenu;
 
-        do {
-            System.out.println("Ingrese la opción que corresponda: ");
-            System.out.println("1. Auto");
-            System.out.println("2. Minibus");
-            System.out.println("3. Camion");
-            System.out.println("4. Furgoneta");
-            System.out.println("0. Salir");
+        System.out.println("Bienvenido al cotizador de vehiculos.");
 
-            respuesta = scanner.nextInt();
-            if (respuesta != 0)
-                InstanciarVehiculo(respuesta);
-        } while (respuesta != 0);
-*/
+        System.out.println("Ingrese la opción que corresponda: ");
+        System.out.println("1. Insertar Vehiculo a la BD");
+        System.out.println("2. Listar Vehiculos desde la BD");
+        System.out.println("0. Salir");
+
+        respuestaMenu = scanner.nextInt();
+
+        if (respuestaMenu == 1)
+            InstanciarVehiculo();
+        else
+            ListarVehiculo();
+
         System.out.println("Gracias por utilizar el cotizador de vehiculos");
     }
 }

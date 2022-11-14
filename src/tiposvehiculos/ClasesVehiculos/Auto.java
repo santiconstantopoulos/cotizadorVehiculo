@@ -6,10 +6,10 @@ public class Auto extends Vehiculo {
     private int cantPlazas = 5;
     public double resultado;
 
-    public Auto(String tipoVehiculo, int i, Integer cantDias2) {
+    public Auto(String tipoVehiculo, int precioBase, Integer cantDias) {
         this.setNombreVehiculo(tipoVehiculo);
-        this.setPrecioBase(i);
-        this.setCantDias(cantDias2);
+        this.setPrecioBase(precioBase);
+        this.setCantDias(cantDias);
     }
 
     public Integer getCantDias() {
