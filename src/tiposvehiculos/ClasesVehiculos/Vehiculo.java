@@ -1,4 +1,4 @@
-package tiposvehiculos;
+package tiposvehiculos.ClasesVehiculos;
 
 public abstract class Vehiculo {
     private String patente;

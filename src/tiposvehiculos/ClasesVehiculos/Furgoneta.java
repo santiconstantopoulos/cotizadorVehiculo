@@ -1,4 +1,4 @@
-package tiposvehiculos;
+package tiposvehiculos.ClasesVehiculos;
 
 public class Furgoneta extends Vehiculo {
 

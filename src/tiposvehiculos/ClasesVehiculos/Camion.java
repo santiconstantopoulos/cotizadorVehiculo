@@ -1,16 +1,15 @@
-package tiposvehiculos;
+package tiposvehiculos.ClasesVehiculos;
 
-public class Minibus extends Vehiculo {
+public class Camion extends Vehiculo {
 
-    private int cantPlazas = 20;
-    private int cantDias;
     public double resultado;
+    private Integer cantDias;
+    private int cantPlazas = 3;
 
-    public Minibus(String tipoVehiculo, int i, Integer cantDias2) {
-        this.setNombreVehiculo(tipoVehiculo);
-        this.setPrecioBase(i);
-        this.setCantDias(cantDias2);
-
+    public Camion(String tipoVehiculo, int i, Integer cantDias2) {
+            this.setNombreVehiculo(tipoVehiculo);
+            this.setPrecioBase(i);
+            this.setCantDias(cantDias2);
     }
 
     public Integer getCantDias() {
@@ -32,8 +31,9 @@ public class Minibus extends Vehiculo {
     @Override
     public void setResultadoCotizacion() {
         // TODO Auto-generated method stub
-        super.resultado = (double) ((2000 * this.cantDias) + (100 * this.cantDias * 20) + (120 * 20));
+        super.resultado = (double) (1600 + (2000 * this.cantDias) + (800 * 10));
     }
+
     public double getResultadoCotizacion() {
         return super.resultado;
     }
