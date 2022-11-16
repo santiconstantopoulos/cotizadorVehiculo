@@ -18,28 +18,26 @@ public class App {
     static Scanner scanner = new Scanner(System.in);
 
     public static void ConfigurarDatosVehiculo(Vehiculo miVehiculo) {
+        //Realiza la llamada al metodo que almacena en la DB
+        //Devuelve la impresion de la cotizacion
         miVehiculo.setResultadoCotizacion();
 
         switch (miVehiculo.getNombreVehiculo()) {
 
             case "Auto":
                 AlmacenarVehiculo(miVehiculo, 1);
-                System.out.println("Se ha agregado con exito a la base de datos. ");
                 System.out.println("El resultado de la cotizacion es: $"+ miVehiculo.getResultadoCotizacion());
                 break;
             case "Minibus":
                 AlmacenarVehiculo(miVehiculo, 2);
-                System.out.println("Se ha agregado con exito a la base de datos. ");
                 System.out.println("El resultado de la cotizacion es: $"+ miVehiculo.getResultadoCotizacion());
                 break;
             case "Camion":
                 AlmacenarVehiculo(miVehiculo, 3);
-                System.out.println("Se ha agregado con exito a la base de datos. ");
                 System.out.println("El resultado de la cotizacion es: $"+ miVehiculo.getResultadoCotizacion());
                 break;
             case "Furgoneta":
                 AlmacenarVehiculo(miVehiculo, 4);
-                System.out.println("Se ha agregado con exito a la base de datos. ");
                 System.out.println("El resultado de la cotizacion es: $"+ miVehiculo.getResultadoCotizacion());
                 break;
             default:
