@@ -12,6 +12,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.SimpleDateFormat;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -131,6 +132,7 @@ public class ListadoDeVehiculos extends JFrame implements ActionListener, MouseL
 				+ " precioCotizacion, "
 				+ "Fecha_Creacion "
 				+ "FROM cotizacion INNER JOIN vehiculo AS V ON V.idVehiculo = cotizacion.idTipoVehiculo order by idCotizacion asc";
+		
 
 		// Cargar datos en la tabla
 		try {
@@ -145,11 +147,20 @@ public class ListadoDeVehiculos extends JFrame implements ActionListener, MouseL
 			// Procesa el resultSet y agrega los registros al ArrayList detalleListaPrecio
 			// que contendra la informacion obtenida desde la BD
 			while (rs.next()) {
+				String patron= "dd-MM-yyyy";
+				
+				
+				SimpleDateFormat formatter = new SimpleDateFormat(patron);
+				String newFormatterDate = formatter.format(rs.getDate("Fecha_Creacion"));
+
 				detalle[0] = String.valueOf(rs.getInt("idCotizacion"));
 				detalle[1] = rs.getString("tipoVehiculo");
 				detalle[2] = rs.getString("cantidadDias");
 				detalle[3] = String.valueOf(rs.getDouble("precioCotizacion"));
-				detalle[4] = rs.getString("Fecha_Creacion").toString();
+				detalle[4] = newFormatterDate;
+
+				
+				//detalle[4] = rs.getString("Fecha_Creacion").toString();
 				this.modelo.addRow(detalle);
 
 			}

@@ -137,11 +137,6 @@ public class App {
         ListadoDeVehiculos listar = new ListadoDeVehiculos();
         listar.main(null);
 
-        /*FALTARIA AGRREGAR BIEN EN LA INTERFAZ EL ORDEN, EL FORMATEO A LA DERECHA.
-        QUE EL USUARIO NO PUEDA LISTAR POR CONSOLA, SINO QUE SE DESPLIEGUE POR INTERFAZ
-
-        
-        */
     }
 
     public static void main(String[] args) throws Exception {
