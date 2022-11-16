@@ -130,8 +130,8 @@ public class ListadoDeVehiculos extends JFrame implements ActionListener, MouseL
 				+ " cantidadDias, "
 				+ " precioCotizacion, "
 				+ "Fecha_Creacion "
-				+ "FROM cotizacion INNER JOIN vehiculo AS V ON V.idVehiculo = cotizacion.idTipoVehiculo"
-				+ "ORDER BY idCotizacion ASC";
+				+ "FROM cotizacion INNER JOIN vehiculo AS V ON V.idVehiculo = cotizacion.idTipoVehiculo order by idCotizacion asc";
+
 		// Cargar datos en la tabla
 		try {
 			// Instancio un objeto de acceso a datos
