@@ -21,28 +21,27 @@ public class App {
         //Realiza la llamada al metodo que almacena en la DB
         //Devuelve la impresion de la cotizacion
         miVehiculo.setResultadoCotizacion();
-
+        int tipoV=0;
         switch (miVehiculo.getNombreVehiculo()) {
 
             case "Auto":
-                AlmacenarVehiculo(miVehiculo, 1);
-                System.out.println("El resultado de la cotizacion es: $"+ miVehiculo.getResultadoCotizacion());
+                tipoV=1;
                 break;
             case "Minibus":
-                AlmacenarVehiculo(miVehiculo, 2);
-                System.out.println("El resultado de la cotizacion es: $"+ miVehiculo.getResultadoCotizacion());
+                tipoV=2;
                 break;
             case "Camion":
-                AlmacenarVehiculo(miVehiculo, 3);
-                System.out.println("El resultado de la cotizacion es: $"+ miVehiculo.getResultadoCotizacion());
+                tipoV=3;
                 break;
             case "Furgoneta":
-                AlmacenarVehiculo(miVehiculo, 4);
-                System.out.println("El resultado de la cotizacion es: $"+ miVehiculo.getResultadoCotizacion());
+                tipoV=4;
                 break;
             default:
                 break;
         }
+        AlmacenarVehiculo(miVehiculo, tipoV);
+        System.out.println("El resultado de la cotizacion es: $ "+ miVehiculo.getResultadoCotizacion() + "\n");
+
         return;
     }
 
@@ -111,6 +110,7 @@ public class App {
 
             // execute insert SQL statement
             sentencia.executeUpdate();
+            System.out.println("Se ha agregado con exito a la BD \n");
 
         } catch (SQLException error) {
             System.err.println("Error al insertar los datos.");

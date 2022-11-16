@@ -103,13 +103,17 @@ public class ListadoDeVehiculos extends JFrame implements ActionListener, MouseL
 
 		DefaultTableCellRenderer rightRenderer = new DefaultTableCellRenderer();
 			rightRenderer.setHorizontalAlignment(JLabel.RIGHT);
+			
 			table.getColumnModel().getColumn(4).setCellRenderer(rightRenderer);
 			table.getColumnModel().getColumn(3).setCellRenderer(rightRenderer);
 			table.getColumnModel().getColumn(2).setCellRenderer(rightRenderer);
-			rightRenderer.setHorizontalAlignment(JLabel.CENTER);
-			table.getColumnModel().getColumn(1).setCellRenderer(rightRenderer);
+			//table.getColumnModel().getColumn(0).setCellRenderer(rightRenderer);
 
-
+			DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer();
+			centerRenderer.setHorizontalAlignment(JLabel.CENTER);
+			
+			table.getColumnModel().getColumn(1).setCellRenderer(centerRenderer);
+		
 
 
 		table.addMouseListener(this);
