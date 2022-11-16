@@ -30,7 +30,6 @@ public class Camion extends Vehiculo {
 
     @Override
     public void setResultadoCotizacion() {
-        // TODO Auto-generated method stub
         super.resultado = (double) (1600 + (2000 * this.cantDias) + (800 * 10));
     }
 

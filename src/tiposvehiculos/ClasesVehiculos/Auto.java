@@ -30,7 +30,7 @@ public class Auto extends Vehiculo {
 
     @Override
     public void setResultadoCotizacion() {
-        // TODO Auto-generated method stub
+        
         super.resultado = (double) ((2000 * this.cantDias) + (100 * this.cantDias * 5));
 
     }

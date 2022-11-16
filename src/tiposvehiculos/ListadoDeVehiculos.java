@@ -15,11 +15,13 @@ import java.sql.SQLException;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.ListSelectionModel;
+import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 
 public class ListadoDeVehiculos extends JFrame implements ActionListener, MouseListener, ItemListener {
@@ -32,7 +34,7 @@ public class ListadoDeVehiculos extends JFrame implements ActionListener, MouseL
 	/**
 	 * Launch the application.
 	 */
-	public static void main(String[] args) {
+	public void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
@@ -58,14 +60,18 @@ public class ListadoDeVehiculos extends JFrame implements ActionListener, MouseL
 		setContentPane(contentPane);
 
 		modelo = new DefaultTableModel(new Object[][] {,}, new String[] {
-				"FECHA DE CREACION",
+				"ID COTIZACION",
 				"TIPO DE VEHICULO",
 				"DIAS DE ALQUILER",
-				"PRECIO DE COTIZACION" }) {
+				"PRECIO DE COTIZACION",
+				"FECHA DE CREACION"})
+				
+				{
 			public boolean isCellEditable(int row, int column) {
 				return true;// Esta sentencia hace que todas las celdas no permitan edicion
 			}
-		};
+	
+				};
 
 		scrollPane = new JScrollPane();
 		scrollPane.setBounds(10, 11, 640, 282);
@@ -94,6 +100,17 @@ public class ListadoDeVehiculos extends JFrame implements ActionListener, MouseL
 			}
 		});
 
+		DefaultTableCellRenderer rightRenderer = new DefaultTableCellRenderer();
+			rightRenderer.setHorizontalAlignment(JLabel.RIGHT);
+			table.getColumnModel().getColumn(4).setCellRenderer(rightRenderer);
+			table.getColumnModel().getColumn(3).setCellRenderer(rightRenderer);
+			table.getColumnModel().getColumn(2).setCellRenderer(rightRenderer);
+			rightRenderer.setHorizontalAlignment(JLabel.CENTER);
+			table.getColumnModel().getColumn(1).setCellRenderer(rightRenderer);
+
+
+
+
 		table.addMouseListener(this);
 		cargarGrillaVehiculos();
 	}
@@ -107,21 +124,14 @@ public class ListadoDeVehiculos extends JFrame implements ActionListener, MouseL
 		this.modelo.setRowCount(0);
 		Object detalle[] = new Object[9];
 
-		/*
-		 * CREATE TABLE `cotizacion` (
-		 * `idCotizacion` int unsigned NOT NULL AUTO_INCREMENT,
-		 * `idTipoVehiculo` int NOT NULL,
-		 * `cantidadDias` int unsigned NOT NULL,
-		 * `precioCotizacion` float NOT NULL,
-		 * `Fecha_Creacion` date DEFAULT NULL,
-		 */
-
 		String query = "SELECT "
-				+ " Fecha_Creacion, "
-				+ " idTipoVehiculo, "
+				+ " idCotizacion, "
+				+ " V.tipoVehiculo, "
 				+ " cantidadDias, "
-				+ "precioCotizacion "
-				+ "FROM cotizacion";
+				+ " precioCotizacion, "
+				+ "Fecha_Creacion "
+				+ "FROM cotizacion INNER JOIN vehiculo AS V ON V.idVehiculo = cotizacion.idTipoVehiculo"
+				+ "ORDER BY idCotizacion ASC";
 		// Cargar datos en la tabla
 		try {
 			// Instancio un objeto de acceso a datos
@@ -135,11 +145,11 @@ public class ListadoDeVehiculos extends JFrame implements ActionListener, MouseL
 			// Procesa el resultSet y agrega los registros al ArrayList detalleListaPrecio
 			// que contendra la informacion obtenida desde la BD
 			while (rs.next()) {
-				detalle[0] = String.valueOf(rs.getDate("Fecha_Creacion"));
-				detalle[1] = rs.getString("idTipoVehiculo");
+				detalle[0] = String.valueOf(rs.getInt("idCotizacion"));
+				detalle[1] = rs.getString("tipoVehiculo");
 				detalle[2] = rs.getString("cantidadDias");
-				detalle[3] = rs.getString("precioCotizacion");
-
+				detalle[3] = String.valueOf(rs.getDouble("precioCotizacion"));
+				detalle[4] = rs.getString("Fecha_Creacion").toString();
 				this.modelo.addRow(detalle);
 
 			}
