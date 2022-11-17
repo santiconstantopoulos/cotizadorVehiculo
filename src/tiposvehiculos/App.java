@@ -18,29 +18,29 @@ public class App {
     static Scanner scanner = new Scanner(System.in);
 
     public static void ConfigurarDatosVehiculo(Vehiculo miVehiculo) {
-        //Realiza la llamada al metodo que almacena en la DB
-        //Devuelve la impresion de la cotizacion
+        // Realiza la llamada al metodo que almacena en la DB
+        // Devuelve la impresion de la cotizacion
         miVehiculo.setResultadoCotizacion();
-        int tipoV=0;
+        int tipoV = 0;
         switch (miVehiculo.getNombreVehiculo()) {
 
             case "Auto":
-                tipoV=1;
+                tipoV = 1;
                 break;
             case "Minibus":
-                tipoV=2;
+                tipoV = 2;
                 break;
             case "Camion":
-                tipoV=3;
+                tipoV = 3;
                 break;
             case "Furgoneta":
-                tipoV=4;
+                tipoV = 4;
                 break;
             default:
                 break;
         }
         AlmacenarVehiculo(miVehiculo, tipoV);
-        System.out.println("El resultado de la cotizacion es: $ "+ miVehiculo.getResultadoCotizacion() + "\n");
+        System.out.println("El resultado de la cotizacion es: $ " + miVehiculo.getResultadoCotizacion() + "\n");
 
         return;
     }
@@ -48,6 +48,7 @@ public class App {
     public static void InstanciarVehiculo() {
 
         int respuesta;
+        Vehiculo nVehiculo = null;
         System.out.println("Ingrese la opción que corresponda: ");
         System.out.println("1. Auto");
         System.out.println("2. Minibus");
@@ -61,25 +62,21 @@ public class App {
 
         switch (respuesta) {
             case 1:
-                Auto auto = new Auto("Auto", 2000, cantDias);
-                ConfigurarDatosVehiculo(auto);
+                nVehiculo = new Auto("Auto", 2000, cantDias);
                 break;
             case 2:
-                Minibus minibus = new Minibus("Minibus", 2000, cantDias);
-                ConfigurarDatosVehiculo(minibus);
+                nVehiculo = new Minibus("Minibus", 2000, cantDias);
                 break;
             case 3:
-                Camion camion = new Camion("Camion", 2000, cantDias);
-                ConfigurarDatosVehiculo(camion);
+                nVehiculo = new Camion("Camion", 2000, cantDias);
                 break;
             case 4:
-                Furgoneta furgoneta = new Furgoneta("Furgoneta", 2000, cantDias);
-                ConfigurarDatosVehiculo(furgoneta);
+                nVehiculo = new Furgoneta("Furgoneta", 2000, cantDias);
                 break;
             default:
                 break;
-
         }
+        ConfigurarDatosVehiculo(nVehiculo);
         return;
     }
 
@@ -155,7 +152,7 @@ public class App {
             if (respuestaMenu == 1) {
                 InstanciarVehiculo();
             } else {
-                if(respuestaMenu==2)
+                if (respuestaMenu == 2)
                     ListarVehiculo();
             }
         } while (respuestaMenu != 0);

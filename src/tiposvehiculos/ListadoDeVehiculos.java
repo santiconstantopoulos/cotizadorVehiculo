@@ -65,14 +65,14 @@ public class ListadoDeVehiculos extends JFrame implements ActionListener, MouseL
 				"TIPO DE VEHICULO",
 				"DIAS DE ALQUILER",
 				"PRECIO DE COTIZACION",
-				"FECHA DE CREACION"})
-				
-				{
+				"FECHA DE CREACION" })
+
+		{
 			public boolean isCellEditable(int row, int column) {
 				return true;// Esta sentencia hace que todas las celdas no permitan edicion
 			}
-	
-				};
+
+		};
 
 		scrollPane = new JScrollPane();
 		scrollPane.setBounds(10, 11, 640, 282);
@@ -102,19 +102,16 @@ public class ListadoDeVehiculos extends JFrame implements ActionListener, MouseL
 		});
 
 		DefaultTableCellRenderer rightRenderer = new DefaultTableCellRenderer();
-			rightRenderer.setHorizontalAlignment(JLabel.RIGHT);
-			
-			table.getColumnModel().getColumn(4).setCellRenderer(rightRenderer);
-			table.getColumnModel().getColumn(3).setCellRenderer(rightRenderer);
-			table.getColumnModel().getColumn(2).setCellRenderer(rightRenderer);
-			//table.getColumnModel().getColumn(0).setCellRenderer(rightRenderer);
+		rightRenderer.setHorizontalAlignment(JLabel.RIGHT);
 
-			DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer();
-			centerRenderer.setHorizontalAlignment(JLabel.CENTER);
-			
-			table.getColumnModel().getColumn(1).setCellRenderer(centerRenderer);
-		
+		table.getColumnModel().getColumn(4).setCellRenderer(rightRenderer);
+		table.getColumnModel().getColumn(3).setCellRenderer(rightRenderer);
+		table.getColumnModel().getColumn(2).setCellRenderer(rightRenderer);
 
+		DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer();
+		centerRenderer.setHorizontalAlignment(JLabel.CENTER);
+
+		table.getColumnModel().getColumn(1).setCellRenderer(centerRenderer);
 
 		table.addMouseListener(this);
 		cargarGrillaVehiculos();
@@ -136,7 +133,6 @@ public class ListadoDeVehiculos extends JFrame implements ActionListener, MouseL
 				+ " precioCotizacion, "
 				+ "Fecha_Creacion "
 				+ "FROM cotizacion INNER JOIN vehiculo AS V ON V.idVehiculo = cotizacion.idTipoVehiculo order by idCotizacion asc";
-		
 
 		// Cargar datos en la tabla
 		try {
@@ -151,9 +147,8 @@ public class ListadoDeVehiculos extends JFrame implements ActionListener, MouseL
 			// Procesa el resultSet y agrega los registros al ArrayList detalleListaPrecio
 			// que contendra la informacion obtenida desde la BD
 			while (rs.next()) {
-				String patron= "dd-MM-yyyy";
-				
-				
+				String patron = "dd-MM-yyyy";
+
 				SimpleDateFormat formatter = new SimpleDateFormat(patron);
 				String newFormatterDate = formatter.format(rs.getDate("Fecha_Creacion"));
 
@@ -163,8 +158,7 @@ public class ListadoDeVehiculos extends JFrame implements ActionListener, MouseL
 				detalle[3] = String.valueOf(rs.getDouble("precioCotizacion"));
 				detalle[4] = newFormatterDate;
 
-				
-				//detalle[4] = rs.getString("Fecha_Creacion").toString();
+				// detalle[4] = rs.getString("Fecha_Creacion").toString();
 				this.modelo.addRow(detalle);
 
 			}
