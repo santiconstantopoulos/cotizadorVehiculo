@@ -112,7 +112,7 @@ public class ListadoDeVehiculos extends JFrame implements ActionListener, MouseL
 		centerRenderer.setHorizontalAlignment(JLabel.CENTER);
 
 		table.getColumnModel().getColumn(1).setCellRenderer(centerRenderer);
-
+		//einds
 		table.addMouseListener(this);
 		cargarGrillaVehiculos();
 	}
